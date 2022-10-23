@@ -106,6 +106,7 @@ export default function UploadTranscript() {
     }
 
     // if a user is logged in, redirect to a page of your liking
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
         console.log(user)
         if (!loading) {
