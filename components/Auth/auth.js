@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import { initializeApp, getApps } from "firebase/app";
+
 import {
   getAuth,
   onAuthStateChanged,
@@ -91,6 +92,7 @@ const useAuthProvider = () => {
   const confirmPasswordReset = async (password, oobCode) => {
     await fConfirmPasswordReset(auth, oobCode, password);
   };
+
 
   return {
     user,

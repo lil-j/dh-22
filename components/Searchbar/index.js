@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function SearchBar() {
+export default function SearchBar({className}) {
   return (
-    <div>
+    <div className={className}>
       <form className="max-w-sm px-4">
         <div className="relative">
           <svg

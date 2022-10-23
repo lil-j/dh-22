@@ -8,13 +8,6 @@ import Chip from "../components/Chip";
 export default function Home() {
     const { user, loading, signOut } = useAuth();
 
-      useEffect(() => {
-        if (!user)
-          router.push("/login");
-        else
-          router.push("/school?id=101")
-      }, [user]);
-
     // loading state
     if (loading) {
         return <p>Loading...</p>;

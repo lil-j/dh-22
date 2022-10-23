@@ -11,16 +11,6 @@ export default function School() {
   const router = useRouter();
   const { user, loading, signOut } = useAuth();
 
-  useEffect(() => {
-    if (!user)
-      router.push("/login");
-  }, [user]);
-
-  // loading state
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <div className={[styles.container]}>
       <Head>
@@ -35,7 +25,6 @@ export default function School() {
       <div className="w-full h-full flex flex-col justify-start">
         <div className="w-full h-52 " style={{ backgroundImage: "linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)" }}>
           <Navbar/>
-
         </div>
       </div>
 
