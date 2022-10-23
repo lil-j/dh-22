@@ -3,7 +3,7 @@ import Chip from "../components/Chip";
 import {useEffect, useState} from "react";
 import { useDb } from "../components/Firebase/db";
 
-export default function PersonalStatement({uid}) {
+export default function Essay({uid}) {
   const db = useDb();
 
   useEffect(async () => {

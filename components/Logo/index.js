@@ -1,5 +1,8 @@
+import Link from "next/link";
 export default function Logo() {
   return (
-   <h4>Logo</h4>
+   <Link href="/">
+     <a className="font-bold hover:underline">Vantage</a>
+   </Link>
   );
 }

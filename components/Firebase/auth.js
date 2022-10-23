@@ -21,13 +21,14 @@ export const useAuth = () => {
 
     const temp = getAuth(firebaseApp);
     setAuth(temp);
+
     const unsubscribe = onAuthStateChanged(temp, (user) => {
       if (user) {
         setUser(user);
       } else {
         setUser(null);
       }
-    });
+    }, []);
 
     return () => unsubscribe();
   }, [user, firebaseApp]);
