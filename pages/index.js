@@ -22,7 +22,7 @@ export default function Home() {
                 <Chip>Direct to major</Chip>
             </Hero>
             <div className="mt-16 px-6 max-w-4xl mx-auto">
-                <div className="grid gap-20 grid-cols-4">
+                <div className="grid gap-20 grid-cols-1 md:grid-cols-4">
                     <div className="col-span-1">
                         <div className="sticky top-10 mt-4">
                             <h1 className="font-bold text-2xl mb-10">2021-22 Application Cycle</h1>
