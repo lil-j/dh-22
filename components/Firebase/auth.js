@@ -19,8 +19,9 @@ export const useAuth = () => {
     if (!firebaseApp)
       return null;
 
-    setAuth(getAuth(firebaseApp));
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const temp = getAuth(firebaseApp);
+    setAuth(temp);
+    const unsubscribe = onAuthStateChanged(temp, (user) => {
       if (user) {
         setUser(user);
       } else {
@@ -67,7 +68,6 @@ export const useAuth = () => {
 
   return {
     user,
-    loading,
     signIn,
     signUp,
     signOut,

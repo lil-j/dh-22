@@ -17,6 +17,8 @@ const Login = () => {
   const signIn = (event, email, password) => {
     event.preventDefault();
 
+    if (!auth) return null;
+
     auth
       .signIn(email, password)
       .then(() => {
@@ -31,12 +33,12 @@ const Login = () => {
   };
 
   // loading state
-  if (auth.loading) {
+  if (!auth) {
     return <p>Loading...</p>;
   }
 
   // if a user is logged in, redirect to a page of your liking
-  if (auth.user) {
+  if (auth && auth.user) {
     router.push("/");
     return null;
   }
@@ -53,7 +55,7 @@ const Login = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="max-w-md mx-auto">
+      <main className="max-w-md mx-auto mt-20">
         <h1 className="text-2xl font-bold">Login</h1>
         <br />
         <form

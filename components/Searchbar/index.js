@@ -1,9 +1,43 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {useDb} from "../Firebase/db";
+import {useRouter} from "next/router";
 
 export default function SearchBar({className}) {
+  const db = useDb();
+  const [query, setQuery] = useState("");
+  const [schoolData, setSchoolData] = useState(null);
+  const router = useRouter();
+
+  useEffect(async () => {
+    if (!db) return;
+    setSchoolData(await db.getSchools());
+  }, [db === null]);
+
+  if (!db) return <p>Loading...</p>;
+
+  let filteredSchools = [];
+  if (query !== "" && schoolData) {
+    schoolData.forEach((doc) => {
+      const name = doc.data().name;
+      if (!name.toLowerCase().startsWith(query.toLowerCase())) return;
+      filteredSchools.push({
+        "id": doc.id,
+        "name": name
+      });
+    });
+  }
+
+  console.log(filteredSchools);
+
+  const ListItem = ({key, schoolId, schoolName}) => (
+    <li key={key}>
+      <button type="button" className="inline-flex py-1 px-2 w-full hover:bg-gray-100" onClick={() => router.push(`/school?id=${schoolId}`)}>{schoolName}</button>
+    </li>
+  );
+
   return (
     <div className={className}>
-      <form className="max-w-sm px-4">
+      <form className="max-w-sm py-4">
         <div className="relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -22,10 +56,19 @@ export default function SearchBar({className}) {
           <input
             type="text"
             placeholder="Search"
-            className="w-full py-1 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
+            className="w-full py-1 pl-12 pr-20 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
           />
         </div>
       </form>
+      <div className={`${query === "" ? "hidden" : ""} z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow relative`}>
+        <ul className="py-1 text-sm text-gray-700" aria-labelledby="dropdown-button">
+          {filteredSchools.map((school) => {
+            return <ListItem key={school.id} schoolId={school.id} schoolName={school.name}/>;
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
