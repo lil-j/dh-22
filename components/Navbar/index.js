@@ -17,7 +17,7 @@ const Navbar = ({noSearchBar}) => {
         <Logo/>
       </div>
       {!noSearchBar && <SearchBar className="basis-1/4"/>}
-      <div className={`${noSearchBar ? "basis-1/4" : "basis-1/2"} flex flex-row items-center justify-self-end justify-end pl-[20%]`}>
+      <div className={`${noSearchBar ? "basis-1/2" : "basis-1/2"} flex flex-row items-center justify-self-end justify-end pl-[20%]`}>
           {
               !user ? <>
                   <div className="mx-auto">
