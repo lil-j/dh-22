@@ -46,7 +46,7 @@ export default function Essay() {
         }
          else {
             if (!loading) {
-                router.push("/login")
+                await router.push("/login")
             }
         }
     }, [user, loading])
@@ -78,12 +78,12 @@ export default function Essay() {
                                 <details>
                                     <summary className="font-semibold text-md">Full Course History</summary>
                                 {
-                                    authorData.courses.map(({courseCode, dept, grade}) => {
+                                    authorData.courses.map(({courseCode, dept, grade, index}) => {
                                         let backgroundColor ="skyblue";
                                         if (grade < 2.0) backgroundColor = "red";
                                         if (grade < 3.0) backgroundColor = "orange";
                                         if (grade >= 3.0) backgroundColor = "green";
-                                        return <div className="mb-3">
+                                        return <div key={index} className="mb-3">
                                             <h4 className="font-medium">{dept} {courseCode}</h4>
                                             <div
                                                 style={{backgroundColor}}

@@ -17,7 +17,7 @@ export default function Home() {
             console.log(db);
             setSchoolData(await db.getSchools());
         }
-    }, [db === null]);
+    }, [db]);
 
     // loading state
     if (!db) {
@@ -47,7 +47,7 @@ export default function Home() {
                   <h1 className="el-mesiri-font text-8xl text-white">
                       Earn off your success
                   </h1>
-                  <br></br>
+                  <br/>
                   <div className="flex flex-row items-start">
                       <SearchBar/>
                       <Button className={"ml-5 top-0 mb-auto mt-3"} text={"Go!"} />
