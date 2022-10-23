@@ -54,7 +54,10 @@ Throughout the development of Vantage, we not only learned many new skills while
 ## What's next for Vantage
 1.We’re excited to conduct user interviews with potential applicants and readers of Vantage to tailor the product their needs.
 2. Based on the learnings from these interviews, we want to start building a database of successful applications, centered around programs/departments at the University of Washington
+
 3. We will build a more sophisticated dashboard and verification system for essay submissions. Some features may include strike-through redaction for personal information, and originality scores.
+
 4. Once we have the collection of resources, we plan to implement a Stripe/Plaid integration so we can start charging users, and share earnings with those who share their applications. We also want to explore blurring personal statements vs supplemental essays (for users to preview before paying).
+
 5. We also want to start exploring different payment amounts to determine the optimal revenue per user.
 
