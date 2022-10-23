@@ -1,14 +1,19 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 
 import colors from "../styles/colors";
 import { useAuth } from "../components/Firebase/auth";
 import { setErrorMessage } from "../components/Firebase/setErrorMessage";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {getAuth} from "firebase/auth";
+import {initializeApp} from "firebase/app";
+import {config} from "../components/Firebase/config";
 
 const Login = () => {
   const router = useRouter();
+  const [user, loading, error] = useAuthState(getAuth(initializeApp(config)));
   const auth = useAuth();
 
   const [email, setEmail] = useState("");
@@ -23,7 +28,7 @@ const Login = () => {
       .signIn(email, password)
       .then(() => {
         // do something after signing in. For example, router.push("/");
-        router.push("/");
+        router.push("/profile");
       })
       .catch((error) => {
         let { title, description } = setErrorMessage(error);
@@ -35,12 +40,6 @@ const Login = () => {
   // loading state
   if (!auth) {
     return <p>Loading...</p>;
-  }
-
-  // if a user is logged in, redirect to a page of your liking
-  if (auth && auth.user) {
-    router.push("/");
-    return null;
   }
 
   console.log("rendering");
@@ -59,7 +58,7 @@ const Login = () => {
         <h1 className="text-2xl font-bold">Login</h1>
         <br />
         <form
-          onSubmit={(event) => signIn(event, email, password)}
+          onSubmit={async (event) => await signIn(event, email, password)}
         >
           <div className="flex-initial flex-col">
             <label htmlFor="email" className="inline-block mt-6 mb-3" >Email Address</label>
