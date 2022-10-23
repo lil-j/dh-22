@@ -2,6 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 
 import { useAuth } from "../components/Auth/auth";
+import Hero from "../components/Hero";
+import Chip from "../components/Chip";
 
 export default function Home() {
     const { user, loading, signOut } = useAuth();
@@ -13,20 +15,12 @@ export default function Home() {
 
     return (
         <div>
-            <div className="bg-blue-600 w-full py-24">
-                <div className="max-w-4xl mx-auto">
-                    <h1 className="text-white font-bold text-5xl">Computer Science</h1>
-                    <h3 className="mt-3 text-white font-medium">University of Washington | Paul Allen School of Computer Science & Engineering</h3>
-                    <div className="flex gap-6 mt-7">
-                        <div className="rounded-xl bg-white px-3 py-2 font-medium text-blue-600">
-                            Direct to major
-                        </div>
-                        <div className="rounded-xl bg-white/30 px-3 py-2 font-medium text-white">
-                            Direct to major
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Hero header="Computer Science"
+                  backgroundColor="blue"
+                  subheader="University of Washington | Paul Allen School of Computer Science & Engineering">
+                <Chip textColor="blue">Direct to major</Chip>
+                <Chip>Direct to major</Chip>
+            </Hero>
             <div className="mt-16 px-6 max-w-4xl mx-auto">
                 <div className="grid gap-20 grid-cols-4">
                     <div className="col-span-1">
