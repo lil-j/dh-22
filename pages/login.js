@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import styles from "../styles/Home.module.css";
 import colors from "../styles/colors";
 import { useAuth } from "../components/Auth/auth";
 import { setErrorMessage } from "../components/Auth/setErrorMessage";
@@ -44,7 +43,7 @@ const Login = () => {
 
   console.log("rendering");
   return (
-    <div className={styles.container}>
+    <div className="">
       <Head>
         <title>Login</title>
         <meta
@@ -54,31 +53,31 @@ const Login = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>Login</h1>
+      <main className="max-w-md mx-auto">
+        <h1 className="text-2xl font-bold">Login</h1>
         <br />
         <form
           onSubmit={(event) => signIn(event, email, password)}
         >
           <div className="flex-initial flex-col">
-            <label htmlFor="email" className="inline-block my-6" >Email Address</label>
+            <label htmlFor="email" className="inline-block mt-6 mb-3" >Email Address</label>
             <input
-              className="w-full border-dashed border-2 border-inherit py-1 px-1"
+              className="w-full border-dashed border-2 border-inherit py-1 px-1 rounded"
               type="email"
               name="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
-            <label htmlFor="password" className="inline-block my-6" >Password</label>
+            <label htmlFor="password" className="inline-block mt-6 mb-3" >Password</label>
             <input
-              className="w-full border-dashed border-2 border-inherit py-1 px-1"
+              className="w-full border-dashed border-2 border-inherit py-1 px-1 rounded"
               type="password"
               name="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-            <button className="self-center block rounded px-3 py-2 mx-auto mt-10"  style={{ backgroundColor: colors.PRIMARY }}  type="submit">
-              Submit
+            <button className="self-center block rounded px-3 py-2 mx-auto mt-10 text-white"  style={{ backgroundColor: colors.PRIMARY }}  type="submit">
+              Login
             </button>
           </div>
         </form>
