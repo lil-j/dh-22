@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 
-import { useAuth } from "../components/Auth/auth";
+import { useAuth } from "../components/Firebase/auth";
 import Hero from "../components/Hero";
 import Chip from "../components/Chip";
 

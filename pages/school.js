@@ -1,13 +1,11 @@
 import Head from "next/head";
-import Link from "next/link";
 
-import { useAuth } from "../components/Auth/auth";
+import { useAuth } from "../components/Firebase/auth";
 import {useRouter} from "next/router";
-import {useEffect} from "react";
 import styles from "../styles/Home.module.css";
 import Navbar from "../components/Navbar";
 
-export default function School() {
+export default function School({data}) {
   const router = useRouter();
   const { user, loading, signOut } = useAuth();
 

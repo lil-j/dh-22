@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 import colors from "../styles/colors";
-import { useAuth } from "../components/Auth/auth";
-import { setErrorMessage } from "../components/Auth/setErrorMessage";
+import { useAuth } from "../components/Firebase/auth";
+import { setErrorMessage } from "../components/Firebase/setErrorMessage";
 
 const Login = () => {
   const router = useRouter();
