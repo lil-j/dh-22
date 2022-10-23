@@ -2,9 +2,17 @@ import Head from "next/head";
 import Link from "next/link";
 
 import { useAuth } from "../components/Auth/auth";
+import {useRouter} from "next/router";
+import {useEffect} from "react";
 
 export default function Home() {
+  const router = useRouter();
   const { user, loading, signOut } = useAuth();
+
+  useEffect(() => {
+    if (!user)
+      router.push("/login");
+  }, [user]);
 
   // loading state
   if (loading) {
