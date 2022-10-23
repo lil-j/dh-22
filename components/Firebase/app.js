@@ -4,12 +4,10 @@ import {useEffect, useState} from "react";
 
 export const useApp = () => {
   const [firebaseApp, setFirebaseApp] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setFirebaseApp(initializeApp(config));
-    setIsLoaded(true);
   }, []);
 
-  return [firebaseApp, isLoaded];
+  return firebaseApp;
 }

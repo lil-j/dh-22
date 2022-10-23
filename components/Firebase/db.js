@@ -1,19 +1,29 @@
 import {
   getFirestore,
-  collection
+  getDocs,
+  collection,
+  query
 } from "firebase/firestore";
 import { useApp } from "./app";
+import {useEffect, useState} from "react";
 
 export const useDb = () => {
-  const firestoreApp = useApp();
-  const db = getFirestore(firestoreApp);
+  const firebaseApp = useApp();
+  const [db, setDb] = useState(null);
+
+  useEffect(() => {
+    if (!firebaseApp)
+      return null;
+
+    setDb(getFirestore(firebaseApp));
+  }, [firebaseApp]);
 
   const getSchools = async () => {
-    const snapshot = await collection(db, "schools").get();
-    return snapshot.docs.map(doc => doc.data());
+    const q = query(collection(db, "schools"));
+    return await getDocs(q);
   };
 
-  return {
+  return db ? {
     getSchools
-  }
+  } : null;
 };

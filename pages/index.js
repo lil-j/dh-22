@@ -4,15 +4,31 @@ import Link from "next/link";
 import { useAuth } from "../components/Firebase/auth";
 import Hero from "../components/Hero";
 import Chip from "../components/Chip";
+import {useEffect, useState} from "react";
+import {useDb} from "../components/Firebase/db";
 
 export default function Home() {
-    const { user, loading, signOut } = useAuth();
+    const db = useDb();
+    const [schoolData, setSchoolData] = useState(null);
+
+    useEffect(async () => {
+        if (db) {
+            console.log("HERE1");
+            console.log(db);
+            setSchoolData(await db.getSchools());
+        }
+    }, [db === null]);
 
     // loading state
-    if (loading) {
+    if (!db) {
         return <p>Loading...</p>;
     }
 
+    if (schoolData) {
+        schoolData.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+        });
+    }
 
     return (
         <div>

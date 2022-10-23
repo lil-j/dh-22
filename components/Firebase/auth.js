@@ -11,31 +11,25 @@ import {
 import { useApp } from "./app";
 
 export const useAuth = () => {
-  const [firebaseApp, isFirebaseAppLoaded] = useApp();
+  const firebaseApp = useApp();
+  const [auth, setAuth] = useState(null);
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  let auth;
-  if (isFirebaseAppLoaded)
-    auth = getAuth(firebaseApp);
 
   useEffect(() => {
-    if (!isFirebaseAppLoaded) {
+    if (!firebaseApp)
       return null;
-    }
 
+    setAuth(getAuth(firebaseApp));
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        setLoading(false);
       } else {
-        setUser(false);
-        setLoading(false);
+        setUser(null);
       }
     });
 
     return () => unsubscribe();
-  }, [user, isFirebaseAppLoaded]);
+  }, [user, firebaseApp]);
 
   const signIn = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
