@@ -3,7 +3,9 @@ import {
   getDocs,
   collection,
   query,
-  where
+  where,
+  getDoc,
+  doc
 } from "firebase/firestore";
 import { useApp } from "./app";
 import {useEffect, useState} from "react";
@@ -25,11 +27,14 @@ export const useDb = () => {
   };
 
   const getSchool = async (id) => {
-    const q = query(collection(db, "schools"), where("id", "==", id));
-    return await getDoc(q);
+    console.log(id);
+    //const q = query(collection(db, "schools"), where("__name__", "==", id));
+
+    return (await getDoc(doc(db, "schools", id))).data();
   };
 
   return db ? {
-    getSchools
+    getSchools,
+    getSchool
   } : null;
 };

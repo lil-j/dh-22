@@ -10,8 +10,9 @@ export default function SearchBar({className, overrideLink}) {
 
   useEffect(async () => {
     if (!db) return;
+    if (schoolData) return;
     setSchoolData(await db.getSchools());
-  }, [db === null]);
+  }, [db]);
 
   if (!db) return <p>Loading...</p>;
 
@@ -29,8 +30,8 @@ export default function SearchBar({className, overrideLink}) {
 
   console.log(filteredSchools);
 
-  const ListItem = ({key, schoolId, schoolName}) => (
-    <li key={key}>
+  const ListItem = ({schoolId, schoolName}) => (
+    <li >
       <button type="button" className="inline-flex py-1 px-2 w-full hover:bg-gray-100" onClick={() => {
         if (!overrideLink) {
           router.push(`/school?id=${schoolId}`)

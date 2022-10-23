@@ -17,14 +17,14 @@ const Navbar = ({noSearchBar}) => {
         <Logo/>
       </div>
       {!noSearchBar && <SearchBar className="basis-1/4"/>}
-      <div className={`${noSearchBar ? "basis-1/4" : "basis-3/4"} flex flex-row items-center justify-self-end justify-end`}>
+      <div className={`${noSearchBar ? "basis-1/4" : "basis-1/2"} flex flex-row items-center justify-self-end justify-end pl-[20%]`}>
           {
               !user ? <>
                   <div className="mx-auto">
                       <Button className="basis-1/2  " text={"Login"} isBgTransparent onClick={() => router.push("/login")}/>
                   </div>
                   <div className="mx-auto">
-                      <Button className="basis-1/2 " text={"Sign Up"} />
+                      <Button className="basis-1/2" text={"Sign Up"} />
                   </div>
               </> : <div className="mx-auto flex w-full gap-3">
                   <Button className="basis-1/2" text={"Profile"} onClick={() => {

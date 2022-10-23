@@ -17,17 +17,11 @@ export default function Home() {
             console.log(db);
             setSchoolData(await db.getSchools());
         }
-    }, [db]);
+    }, [db === null]);
 
     // loading state
     if (!db) {
         return <p>Loading...</p>;
-    }
-
-    if (schoolData) {
-        schoolData.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
-        });
     }
 
     return (
