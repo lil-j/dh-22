@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDb} from "../Firebase/db";
 import {useRouter} from "next/router";
 
-export default function SearchBar({className}) {
+export default function SearchBar({className, overrideLink}) {
   const db = useDb();
   const [query, setQuery] = useState("");
   const [schoolData, setSchoolData] = useState(null);
@@ -31,7 +31,16 @@ export default function SearchBar({className}) {
 
   const ListItem = ({key, schoolId, schoolName}) => (
     <li key={key}>
-      <button type="button" className="inline-flex py-1 px-2 w-full hover:bg-gray-100" onClick={() => router.push(`/school?id=${schoolId}`)}>{schoolName}</button>
+      <button type="button" className="inline-flex py-1 px-2 w-full hover:bg-gray-100" onClick={() => {
+        if (!overrideLink) {
+          router.push(`/school?id=${schoolId}`)
+        } else {
+          overrideLink({
+            id:schoolId,
+            name:schoolName,
+          })
+        }
+      }}>{schoolName}</button>
     </li>
   );
 
