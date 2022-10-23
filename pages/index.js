@@ -12,6 +12,8 @@ export default function Home() {
   useEffect(() => {
     if (!user)
       router.push("/login");
+    else
+      router.push("/school?id=101")
   }, [user]);
 
   // loading state
